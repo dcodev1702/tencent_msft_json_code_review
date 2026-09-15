@@ -1,0 +1,275 @@
+{
+  "compiler": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "platform": "Linux 6.18.33.2-microsoft-standard-WSL2",
+  "standard": "C++11",
+  "optimized_flags": "-O2 -DNDEBUG",
+  "sanitized_flags": "-O1 -g -fsanitize=address,undefined -fno-sanitize-recover=undefined -fno-omit-frame-pointer",
+  "source_hashes": {
+    "original": {
+      "schema.h": "503eb3cecdd3aab3a1dee2d836c6338eb0e58dcc1d9aa8518f8f65fcd6b17ba0",
+      "pointer.h": "51d8b2cb65af0082cb28342732ae46fd5838547621faceea7f5aa79be1a8f1c2"
+    },
+    "patched": {
+      "schema.h": "4f2a46b7578cb90c8ffc4bdd77b043638216ddb213ef68eb0539d521dc77fe8a",
+      "pointer.h": "51d8b2cb65af0082cb28342732ae46fd5838547621faceea7f5aa79be1a8f1c2"
+    }
+  },
+  "results": [
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "root-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"root-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "nested-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"nested-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "valid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"valid\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "trigger-absent",
+      "return_code": 0,
+      "stdout": "{\"case\":\"trigger-absent\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "escaped-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"escaped-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"a/b~key\":{\"required\":{\"missing\":[\"must~have/x\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/a~1b~0key\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "schema-dependency-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"schema-dependency-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "ordinary-required-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"ordinary-required-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "optimized",
+      "case": "empty-pointer",
+      "return_code": 0,
+      "stdout": "Requesting the default pointer's allocator reference\nAllocator address: 0",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "root-invalid",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344:41: runtime error: reference binding to null pointer of type 'struct CrtAllocator'\n    #0 0x582021477928 in rapidjson::GenericPointer<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>::GetAllocator() /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344\n    #1 0x582021477928 in rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>::EndMissingDependentProperties(rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::CrtAllocator> const&) /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:2706\n    #2 0x582021427856 in rapidjson::internal::Schema<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator> >::EndObject(rapidjson::internal::SchemaValidationContext<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator> >&, unsigned int) const /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:1189\n    #3 0x582021453ce9 in rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>::EndObject(unsigned int) /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:2867\n    #4 0x58202147e2c1 in bool rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >::Accept<rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator> >(rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>&) const /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/document.h:1964\n    #5 0x58202140d068 in main /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/allocator_probe.cpp:66\n    #6 0x719249c2a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #7 0x719249c2a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #8 0x58202140c7a4 in _start (/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/binaries/original-sanitized+0xac7a4) (BuildId: 5c53ffd9ae53f54a5879c4ecdc670deb0f70daf7)"
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "nested-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"nested-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "valid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"valid\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "trigger-absent",
+      "return_code": 0,
+      "stdout": "{\"case\":\"trigger-absent\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "escaped-invalid",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344:41: runtime error: reference binding to null pointer of type 'struct CrtAllocator'\n    #0 0x5bc4e9f09928 in rapidjson::GenericPointer<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>::GetAllocator() /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344\n    #1 0x5bc4e9f09928 in rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>::EndMissingDependentProperties(rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::CrtAllocator> const&) /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:2706\n    #2 0x5bc4e9eb9856 in rapidjson::internal::Schema<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator> >::EndObject(rapidjson::internal::SchemaValidationContext<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator> >&, unsigned int) const /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:1189\n    #3 0x5bc4e9ee5ce9 in rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>::EndObject(unsigned int) /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/schema.h:2867\n    #4 0x5bc4e9f102c1 in bool rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >::Accept<rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator> >(rapidjson::GenericSchemaValidator<rapidjson::GenericSchemaDocument<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>, rapidjson::BaseReaderHandler<rapidjson::UTF8<char>, void>, rapidjson::CrtAllocator>&) const /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/document.h:1964\n    #5 0x5bc4e9e9f068 in main /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/allocator_probe.cpp:66\n    #6 0x78b9d302a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #7 0x78b9d302a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #8 0x5bc4e9e9e7a4 in _start (/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/binaries/original-sanitized+0xac7a4) (BuildId: 5c53ffd9ae53f54a5879c4ecdc670deb0f70daf7)"
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "schema-dependency-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"schema-dependency-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "ordinary-required-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"ordinary-required-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "original",
+      "mode": "sanitized",
+      "case": "empty-pointer",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344:41: runtime error: reference binding to null pointer of type 'struct CrtAllocator'\n    #0 0x626408cc8be2 in rapidjson::GenericPointer<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>::GetAllocator() /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-original/include/rapidjson/pointer.h:344\n    #1 0x626408cc8be2 in main /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/allocator_probe.cpp:47\n    #2 0x77fbea02a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #3 0x77fbea02a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #4 0x626408cc87a4 in _start (/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/binaries/original-sanitized+0xac7a4) (BuildId: 5c53ffd9ae53f54a5879c4ecdc670deb0f70daf7)"
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "root-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"root-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "nested-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"nested-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "valid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"valid\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "trigger-absent",
+      "return_code": 0,
+      "stdout": "{\"case\":\"trigger-absent\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "escaped-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"escaped-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"a/b~key\":{\"required\":{\"missing\":[\"must~have/x\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/a~1b~0key\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "schema-dependency-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"schema-dependency-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "ordinary-required-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"ordinary-required-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "optimized",
+      "case": "empty-pointer",
+      "return_code": 0,
+      "stdout": "Requesting the default pointer's allocator reference\nAllocator address: 0",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "root-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"root-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "nested-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"nested-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#/order\",\"schemaRef\":\"#/properties/order\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "valid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"valid\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "trigger-absent",
+      "return_code": 0,
+      "stdout": "{\"case\":\"trigger-absent\",\"accepted\":true,\"valid\":true,\"error\":{}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "escaped-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"escaped-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"a/b~key\":{\"required\":{\"missing\":[\"must~have/x\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/a~1b~0key\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "schema-dependency-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"schema-dependency-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"dependencies\":{\"errors\":{\"credit_card\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#/dependencies/credit_card\"}}},\"errorCode\":18,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "ordinary-required-invalid",
+      "return_code": 0,
+      "stdout": "{\"case\":\"ordinary-required-invalid\",\"accepted\":false,\"valid\":false,\"error\":{\"required\":{\"missing\":[\"billing_address\"],\"errorCode\":15,\"instanceRef\":\"#\",\"schemaRef\":\"#\"}}}",
+      "stderr": ""
+    },
+    {
+      "revision": "patched",
+      "mode": "sanitized",
+      "case": "empty-pointer",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-patched/include/rapidjson/pointer.h:344:41: runtime error: reference binding to null pointer of type 'struct CrtAllocator'\n    #0 0x56a4be3e0be2 in rapidjson::GenericPointer<rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator> >, rapidjson::CrtAllocator>::GetAllocator() /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/rapidjson-patched/include/rapidjson/pointer.h:344\n    #1 0x56a4be3e0be2 in main /mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/allocator_probe.cpp:47\n    #2 0x75f27e42a600  (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a600) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #3 0x75f27e42a717 in __libc_start_main (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a717) (BuildId: 90ebd03ae9d9f42b23b4eb82fdf70352cf744198)\n    #4 0x56a4be3e07a4 in _start (/mnt/c/Users/lireland/Downloads/rapidjson-allocator-review-work/binaries/patched-sanitized+0xac7a4) (BuildId: a4d50f84d0740319b22afa0b6964923dc0510239)"
+    }
+  ]
+}

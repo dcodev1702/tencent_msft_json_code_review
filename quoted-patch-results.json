@@ -1,0 +1,58 @@
+{
+  "patch_sha256": "2acdf1d8a56f307e3c39ead1843d1c6f15d366a84d17ff42c487a8b9a2368576",
+  "cmake_version": "cmake version 4.4.3",
+  "all_expectations_met": true,
+  "results": [
+    {
+      "test": "missing_source_dir",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "CMake Error at Downloads/rapidjson-allocator-review-work/quoted-fix-null-allocator-deref.cmake:11 (message):\n  SOURCE_DIR must be defined"
+    },
+    {
+      "test": "missing_schema_file",
+      "return_code": 1,
+      "stdout": "",
+      "stderr": "CMake Error at Downloads/rapidjson-allocator-review-work/quoted-fix-null-allocator-deref.cmake:17 (message):\n  schema.h not found at\n  C:\\Users\\lireland\\Downloads\\rapidjson-allocator-review-work\\patch-cases-dp9y2y25\\does-not-exist/include/rapidjson/schema.h"
+    },
+    {
+      "test": "two_matching_calls",
+      "return_code": 0,
+      "stdout": "-- Patched schema.h: replaced GetInvalidSchemaPointer().GetAllocator() with GetStateAllocator()",
+      "stderr": "",
+      "before_matches": 2,
+      "after_old_matches": 0,
+      "after_new_matches": 2
+    },
+    {
+      "test": "second_run_is_idempotent",
+      "return_code": 0,
+      "stdout": "-- Patch already applied or pattern not found in schema.h",
+      "stderr": "",
+      "bytes_unchanged": true
+    },
+    {
+      "test": "zero_match_source_drift",
+      "return_code": 0,
+      "stdout": "-- Patch already applied or pattern not found in schema.h",
+      "stderr": "",
+      "unmodified_drifted_source_returns_success": true
+    },
+    {
+      "test": "third_call_outside_target_function",
+      "return_code": 0,
+      "stdout": "-- Patched schema.h: replaced GetInvalidSchemaPointer().GetAllocator() with GetStateAllocator()",
+      "stderr": "",
+      "before_matches": 3,
+      "after_new_matches": 3
+    },
+    {
+      "test": "header_contents_remain_data",
+      "return_code": 0,
+      "stdout": "-- Patched schema.h: replaced GetInvalidSchemaPointer().GetAllocator() with GetStateAllocator()",
+      "stderr": "",
+      "literal_text_preserved": true,
+      "embedded_cmake_text_not_executed": true
+    }
+  ]
+}
