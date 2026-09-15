@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">CMake patch trust boundary</title>
+  <desc id="desc">Straight solid arrows show the caller-selected source directory flowing to one computed schema header path, an in-memory literal replacement, and a file write.</desc>
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M 0 0 L 12 6 L 0 12 Z" fill="#8f7cff"/></marker>
+    <style>.bg{fill:#070b17}.title{fill:#eefcff;font:700 27px system-ui,sans-serif}.sub{fill:#9eb7ca;font:16px system-ui,sans-serif}.pill{fill:#11182c;stroke:#8f7cff;stroke-width:3}.head{fill:#f5fdff;font:700 17px system-ui,sans-serif}.body{fill:#b9cddd;font:14px system-ui,sans-serif}.warn{fill:#ffd86b;font:700 15px system-ui,sans-serif}.connector{fill:none;stroke:#8f7cff;stroke-width:4;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect class="bg" width="1200" height="480" rx="28"/>
+  <text class="title" x="52" y="55">CMAKE PATCH — EFFECTIVE CAPABILITY</text>
+  <text class="sub" x="52" y="84">No shell, network, dynamic evaluation, or execution of header contents.</text>
+  <rect class="pill" filter="url(#glow)" x="52" y="150" width="225" height="116" rx="58"/>
+  <text class="head" x="164" y="190" text-anchor="middle">CALLER INPUT</text><text class="body" x="164" y="221" text-anchor="middle">SOURCE_DIR</text>
+  <rect class="pill" filter="url(#glow)" x="346" y="150" width="225" height="116" rx="58"/>
+  <text class="head" x="458" y="190" text-anchor="middle">FIXED SUFFIX</text><text class="body" x="458" y="221" text-anchor="middle">include/rapidjson/schema.h</text>
+  <rect class="pill" filter="url(#glow)" x="640" y="150" width="225" height="116" rx="58"/>
+  <text class="head" x="752" y="190" text-anchor="middle">LITERAL REPLACE</text><text class="body" x="752" y="221" text-anchor="middle">all exact matches</text>
+  <rect class="pill" filter="url(#glow)" x="934" y="150" width="225" height="116" rx="58"/>
+  <text class="head" x="1046" y="190" text-anchor="middle">WRITE HEADER</text><text class="body" x="1046" y="221" text-anchor="middle">same computed path</text>
+  <line class="connector" x1="277" y1="208" x2="334" y2="208"/><line class="connector" x1="571" y1="208" x2="628" y2="208"/><line class="connector" x1="865" y1="208" x2="922" y2="208"/>
+  <text class="warn" x="52" y="345">REVIEW NOTE</text>
+  <text class="body" x="52" y="377">The replacement is file-wide and zero matches return success. Pin the input revision, require exactly two matches,</text>
+  <text class="body" x="52" y="404">and verify the post-patch digest/diff. These are patch-integrity weaknesses—not evidence of a backdoor.</text>
+</svg>

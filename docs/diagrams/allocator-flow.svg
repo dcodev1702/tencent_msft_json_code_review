@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">RapidJSON allocator correction flow</title>
+  <desc id="desc">Straight solid arrows connect validation, error construction, safe state allocation, and schema location output. A separate red path identifies the original null allocator reference.</desc>
+  <defs>
+    <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="redGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M 0 0 L 12 6 L 0 12 Z" fill="#39f6ff"/></marker>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M 0 0 L 12 6 L 0 12 Z" fill="#ff4d8d"/></marker>
+    <style>
+      .bg{fill:#070b17}.title{fill:#eefcff;font:700 27px system-ui,sans-serif}.sub{fill:#9eb7ca;font:16px system-ui,sans-serif}.pill{fill:#101a2d;stroke:#39f6ff;stroke-width:3}.danger{fill:#251225;stroke:#ff4d8d;stroke-width:3}.head{fill:#f5fdff;font:700 18px system-ui,sans-serif}.body{fill:#b9cddd;font:15px system-ui,sans-serif}.ok{fill:#67ffbd;font:700 15px system-ui,sans-serif}.bad{fill:#ff87b2;font:700 15px system-ui,sans-serif}.connector{fill:none;stroke:#39f6ff;stroke-width:4;marker-end:url(#arrowCyan)}.dangerConnector{fill:none;stroke:#ff4d8d;stroke-width:4;marker-end:url(#arrowRed)}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="520" rx="28"/>
+  <text class="title" x="52" y="55">DEPENDENT-PROPERTY ERROR PATH</text>
+  <text class="sub" x="52" y="84">Allocator provenance changes; validation semantics and emitted schema path do not.</text>
+  <rect class="pill" filter="url(#cyanGlow)" x="52" y="135" width="245" height="116" rx="58"/>
+  <text class="head" x="174" y="177" text-anchor="middle">DEPENDENCY FAILS</text>
+  <text class="body" x="174" y="207" text-anchor="middle">missingDependents_ is non-empty</text>
+  <rect class="pill" filter="url(#cyanGlow)" x="355" y="135" width="245" height="116" rx="58"/>
+  <text class="head" x="477" y="177" text-anchor="middle">BUILD ERROR OBJECT</text>
+  <text class="body" x="477" y="207" text-anchor="middle">required + missing fields</text>
+  <rect class="pill" filter="url(#cyanGlow)" x="658" y="135" width="245" height="116" rx="58"/>
+  <text class="head" x="780" y="177" text-anchor="middle">PATCHED ALLOCATOR</text>
+  <text class="ok" x="780" y="207" text-anchor="middle">GetStateAllocator()</text>
+  <rect class="pill" filter="url(#cyanGlow)" x="961" y="135" width="187" height="116" rx="58"/>
+  <text class="head" x="1054" y="177" text-anchor="middle">SCHEMA REF</text>
+  <text class="body" x="1054" y="207" text-anchor="middle">#/dependencies/key</text>
+  <line class="connector" x1="297" y1="193" x2="343" y2="193"/>
+  <line class="connector" x1="600" y1="193" x2="646" y2="193"/>
+  <line class="connector" x1="903" y1="193" x2="949" y2="193"/>
+  <rect class="danger" filter="url(#redGlow)" x="355" y="335" width="548" height="116" rx="58"/>
+  <text class="head" x="629" y="377" text-anchor="middle">ORIGINAL ALLOCATOR EXPRESSION</text>
+  <text class="bad" x="629" y="407" text-anchor="middle">default pointer → allocator_ == null → invalid reference</text>
+  <line class="dangerConnector" x1="477" y1="263" x2="477" y2="323"/>
+  <line class="connector" x1="780" y1="323" x2="780" y2="263"/>
+  <text class="sub" x="52" y="494">Finding: ordinary memory-safety defect fixed locally; no covert control or data channel is added.</text>
+</svg>
